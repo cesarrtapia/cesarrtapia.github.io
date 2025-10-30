@@ -62,50 +62,35 @@
     border-top: 3px solid #60a5fa;
   }
 
-  /* ------------ CAROUSEL NUEVO ------------ */
-  .carousel-container {
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    display: flex;
-    gap: 10px;
-    padding-bottom: 5px;
+  /* -------- GALERÍAS DE IMÁGENES (tipo certificados) ---------- */
+  .img-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 15px;
+  }
+
+  .img-card {
+    background: white;
     border-radius: 12px;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
   }
 
-  .carousel-track {
-    display: flex;
-    gap: 10px;
-  }
-
-  .image-container {
-    scroll-snap-align: center;
-    flex: 0 0 100%;
-    position: relative;
-  }
-
-  .image-container img {
+  .img-card img {
     width: 100%;
-    height: 380px;
+    height: 200px;
     object-fit: cover;
     border-radius: 12px;
-    display: block;
   }
 
-  .image-overlay {
-    position: absolute;
-    bottom: 0;
-    background: rgba(59,130,246,0.85);
-    color: white;
-    width: 100%;
-    padding: 10px;
-    text-align: center;
-    opacity: 0;
-    transition: .3s;
-    font-size: 15px;
+  .img-card p {
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 8px;
   }
-  .image-container:hover .image-overlay { opacity: 1; }
 
-  /* ------------ CERTIFICADOS ------------ */
+  /* CERTIFICADOS */
   .cert-gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -127,7 +112,6 @@
     background: white;
   }
 
-  /* Mobile */
   @media (max-width: 768px) {
     header { padding: 40px 15px; }
     header h1 { font-size: 1.8em; }
@@ -140,23 +124,7 @@
 </style>
 
 <script>
-// Bloqueo click derecho
 document.addEventListener('contextmenu', e => e.preventDefault());
-
-// Auto-movimiento carrusel sin desaparecer
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".carousel-container").forEach(carousel => {
-    let scrollAmount = 0;
-
-    setInterval(() => {
-      scrollAmount += 1;
-      if (scrollAmount >= carousel.scrollWidth - carousel.clientWidth) {
-        scrollAmount = 0;
-      }
-      carousel.scrollTo({ left: scrollAmount });
-    }, 30);
-  });
-});
 </script>
 </head>
 
@@ -174,6 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
   <a href="#contacto">Contacto</a>
 </nav>
 
+<!-- SOBRE MI -->
 <section id="sobre-mi">
   <h2>Sobre mí</h2>
   <p>Ingeniero Mecánico con experiencia en la industria Oil & Gas y Manufactura.
@@ -184,35 +153,34 @@ document.addEventListener("DOMContentLoaded", () => {
       asegurando el cumplimiento de especificaciones técnicas, estándares de calidad y normatividad vigente.</p>
 </section>
 
+<!-- MODELADO 3D -->
 <section id="modelado3d">
   <h2>Modelado 3D</h2>
   <p>Parte de mi experiencia como ingeniero de diseño mecánico ha sido el desarrollo de diferentes modelos 3D, a partir de software como AutoCad, Plant 3D, SolidWorks, 
       Autodesk Inventor y Fusion 360. Además he integrado nubes de puntos para garantizar la precisión del modelado en todo momento</p>
 
-  <div class="carousel-container">
-    <div class="carousel-track">
-      <div class="image-container"><img src="img/modelado1.jpg"><div class="image-overlay">Integración de nube de puntos para modelado 3D</div></div>
-      <div class="image-container"><img src="img/modelado2.jpg"><div class="image-overlay">Simulación estática para izaje de SKID</div></div>
-      <div class="image-container"><img src="img/modelado3.jpg"><div class="image-overlay">Sistema de regulación de Gas Natural</div></div>
-      <div class="image-container"><img src="img/modelado4.jpg"><div class="image-overlay">Patín de medición por transferencia de custodia</div></div>
-    </div>
+  <div class="img-gallery">
+    <div class="img-card"><img src="img/modelado1.jpg"><p>Integración de nube de puntos para modelado 3D</p></div>
+    <div class="img-card"><img src="img/modelado2.jpg"><p>Simulación estática para izaje de SKID</p></div>
+    <div class="img-card"><img src="img/modelado3.jpg"><p>Sistema de regulación de Gas Natural</p></div>
+    <div class="img-card"><img src="img/modelado4.jpg"><p>Patín de medición por transferencia de custodia</p></div>
   </div>
 </section>
 
+<!-- CAMPO -->
 <section id="experienciaencampo">
   <h2>Experiencia en Campo</h2>
   <p>Supervisión técnica...</p>
 
-  <div class="carousel-container">
-    <div class="carousel-track">
-      <div class="image-container"><img src="img/campo1.jpg"><div class="image-overlay">Supervisión montaje SKID</div></div>
-      <div class="image-container"><img src="img/campo2.jpg"><div class="image-overlay">Integración estaciones gas</div></div>
-      <div class="image-container"><img src="img/campo3.jpg"><div class="image-overlay">Escaneo 3D</div></div>
-      <div class="image-container"><img src="img/campo4.jpg"><div class="image-overlay">Coordinación planos</div></div>
-    </div>
+  <div class="img-gallery">
+    <div class="img-card"><img src="img/campo1.jpg"><p>Supervisión montaje SKID</p></div>
+    <div class="img-card"><img src="img/campo2.jpg"><p>Integración estaciones gas</p></div>
+    <div class="img-card"><img src="img/campo3.jpg"><p>Escaneo 3D</p></div>
+    <div class="img-card"><img src="img/campo4.jpg"><p>Coordinación planos</p></div>
   </div>
 </section>
 
+<!-- CERTIFICACIONES -->
 <section id="certificaciones">
   <h2>Certificaciones</h2>
 
@@ -226,6 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
   </div>
 </section>
 
+<!-- CONTACTO -->
 <section id="contacto">
   <h2>Contacto</h2>
   <ul>
