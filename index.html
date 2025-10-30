@@ -52,7 +52,6 @@
   }
 
   h2 { border-bottom: 2px solid #3b82f6; padding-bottom: 5px; color: #1e3a8a; }
-  ul { line-height: 1.8; }
 
   footer {
     background: #1e3a8a;
@@ -63,143 +62,136 @@
     border-top: 3px solid #60a5fa;
   }
 
-  /* ---------- CAROUSEL ---------- */
+  /* ------------ CAROUSEL NUEVO ------------ */
   .carousel-container {
-    overflow: hidden;
-    position: relative;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    display: flex;
+    gap: 10px;
+    padding-bottom: 5px;
     border-radius: 12px;
-    margin-top: 20px;
   }
 
   .carousel-track {
     display: flex;
-    animation: slide 14s infinite ease-in-out;
-    width: max-content;
-  }
-
-  .carousel-container:hover .carousel-track {
-    animation-play-state: paused;
+    gap: 10px;
   }
 
   .image-container {
+    scroll-snap-align: center;
+    flex: 0 0 100%;
     position: relative;
-    width: 100%;
-    max-width: 1000px;
   }
 
   .image-container img {
     width: 100%;
-    height: 400px;
+    height: 380px;
     object-fit: cover;
+    border-radius: 12px;
     display: block;
-    pointer-events: none;
   }
 
   .image-overlay {
     position: absolute;
     bottom: 0;
-    background: rgba(59, 130, 246, 0.8);
+    background: rgba(59,130,246,0.85);
     color: white;
     width: 100%;
-    text-align: center;
     padding: 10px;
+    text-align: center;
     opacity: 0;
-    transition: opacity 0.3s ease-in-out;
+    transition: .3s;
+    font-size: 15px;
   }
+  .image-container:hover .image-overlay { opacity: 1; }
 
-  .image-container:hover .image-overlay {
-    opacity: 1;
-  }
-
-  @keyframes slide {
-    0%, 20% { transform: translateX(0); }
-    25%, 45% { transform: translateX(-100%); }
-    50%, 70% { transform: translateX(-200%); }
-    75%, 95% { transform: translateX(-300%); }
-    100% { transform: translateX(0); }
-  }
-
-  /* ---------- CERTIFICADOS ---------- */
+  /* ------------ CERTIFICADOS ------------ */
   .cert-gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 15px;
   }
 
   .cert-card {
-    width: 350px;
     background: white;
     border-radius: 12px;
-    overflow: hidden;
+    padding: 10px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     text-align: center;
-    padding-bottom: 10px;
   }
 
   .cert-card img {
     width: 100%;
-    height: auto;
+    height: 200px;
     object-fit: contain;
-    pointer-events: none;
+    background: white;
   }
 
+  /* Mobile */
   @media (max-width: 768px) {
     header { padding: 40px 15px; }
     header h1 { font-size: 1.8em; }
     section { margin: 100px 20px 20px 20px; padding: 25px; }
     nav a { display: block; margin: 10px 0; }
-
-    .carousel-track { animation: none; }
-    .carousel-container { overflow-x: scroll; scroll-snap-type: x mandatory; }
-    .image-container { scroll-snap-align: center; }
   }
 
-  /* Block saving images */
   img { -webkit-user-drag: none; user-select: none; }
   body { -webkit-touch-callout: none; }
 </style>
 
 <script>
-// Block right click
+// Bloqueo click derecho
 document.addEventListener('contextmenu', e => e.preventDefault());
+
+// Auto-movimiento carrusel sin desaparecer
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".carousel-container").forEach(carousel => {
+    let scrollAmount = 0;
+
+    setInterval(() => {
+      scrollAmount += 1;
+      if (scrollAmount >= carousel.scrollWidth - carousel.clientWidth) {
+        scrollAmount = 0;
+      }
+      carousel.scrollTo({ left: scrollAmount });
+    }, 30);
+  });
+});
 </script>
 </head>
 
 <body>
-  <header>
-    <h1>Cesar R. Tapia Aguilar</h1>
-    <p>Ingeniero Mecánico | Especialidad en Diseño 3D e Integridad Mecánica</p>
-  </header>
+<header>
+  <h1>Cesar R. Tapia Aguilar</h1>
+  <p>Ingeniero Mecánico | Especialidad en Diseño 3D e Integridad Mecánica</p>
+</header>
 
-  <nav>
-    <a href="#sobre-mi">Sobre mí</a>
-    <a href="#modelado3d">Modelado 3D</a>
-    <a href="#experienciaencampo">Experiencia en Campo</a>
-    <a href="#certificaciones">Certificaciones</a>
-    <a href="#contacto">Contacto</a>
-  </nav>
+<nav>
+  <a href="#sobre-mi">Sobre mí</a>
+  <a href="#modelado3d">Modelado 3D</a>
+  <a href="#experienciaencampo">Experiencia en Campo</a>
+  <a href="#certificaciones">Certificaciones</a>
+  <a href="#contacto">Contacto</a>
+</nav>
 
-  <!-- SOBRE MI -->
-  <section id="sobre-mi">
-    <h2>Sobre mí</h2>
-    <p>Ingeniero Mecánico con experiencia en la industria Oil & Gas y Manufactura.
+<section id="sobre-mi">
+  <h2>Sobre mí</h2>
+  <p>Ingeniero Mecánico con experiencia en la industria Oil & Gas y Manufactura.
       He participado en el desarrollo de ingeniería conceptual, básica y de detalle e ingeniería AS-BUILT para instalaciones onshore 
       como estaciones de regulación y medición de gas natural, refinerías y terminales de almacenamiento y reparto de combustibles.
       Cumpliendo en todo momento con normativas nacionales e internacionales como ASME, API, NOM, AGA, ISO, NACE, etc.
       Además, cuento con experiencia en campo supervisando la construcción e integración de equipos estáticos y dinámicos,
       asegurando el cumplimiento de especificaciones técnicas, estándares de calidad y normatividad vigente.</p>
-  </section>
+</section>
 
-  <!-- MODELADO 3D -->
-  <section id="modelado3d">
-    <h2>Modelado 3D</h2>
-    <p>Parte de mi experiencia como ingeniero de diseño mecánico ha sido el desarrollo de diferentes modelos 3D, a partir de software como AutoCad, Plant 3D, SolidWorks, 
+<section id="modelado3d">
+  <h2>Modelado 3D</h2>
+  <p>Parte de mi experiencia como ingeniero de diseño mecánico ha sido el desarrollo de diferentes modelos 3D, a partir de software como AutoCad, Plant 3D, SolidWorks, 
       Autodesk Inventor y Fusion 360. Además he integrado nubes de puntos para garantizar la precisión del modelado en todo momento</p>
 
-       <div class="carousel-container">
+  <div class="carousel-container">
     <div class="carousel-track">
-      <div class="image-container"><img src="img/modelado1.jpg"><div class="image-overlay">Integración de nube de puntos para modelado 3Ds</div></div>
+      <div class="image-container"><img src="img/modelado1.jpg"><div class="image-overlay">Integración de nube de puntos para modelado 3D</div></div>
       <div class="image-container"><img src="img/modelado2.jpg"><div class="image-overlay">Simulación estática para izaje de SKID</div></div>
       <div class="image-container"><img src="img/modelado3.jpg"><div class="image-overlay">Sistema de regulación de Gas Natural</div></div>
       <div class="image-container"><img src="img/modelado4.jpg"><div class="image-overlay">Patín de medición por transferencia de custodia</div></div>
@@ -207,8 +199,7 @@ document.addEventListener('contextmenu', e => e.preventDefault());
   </div>
 </section>
 
-  <!-- CAMPO -->
- <section id="experienciaencampo">
+<section id="experienciaencampo">
   <h2>Experiencia en Campo</h2>
   <p>Supervisión técnica...</p>
 
@@ -221,8 +212,8 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     </div>
   </div>
 </section>
-  <!-- CERTIFICACIONES -->
-  <section id="certificaciones">
+
+<section id="certificaciones">
   <h2>Certificaciones</h2>
 
   <div class="cert-gallery">
@@ -230,12 +221,11 @@ document.addEventListener('contextmenu', e => e.preventDefault());
     <div class="cert-card"><img src="img/cert2.jpg"><p>Manejo de escaner RTC-360 - LEICA GEOSYSTEMS</p></div>
     <div class="cert-card"><img src="img/cert3.jpg"><p>CSWA - SolidWorks</p></div>
     <div class="cert-card"><img src="img/cert4.jpg"><p>Proyectista de Sistemas Piping Industriales - FI</p></div>
-    <div class="cert-card"><img src="img/cert5.jpg"><p>Selección de Bombas Industriales -FI</p></div>
-    <div class="cert-card"><img src="img/cert6.jpg"><p>Estres de Tuberías con AutoPipe - FI</p></div>
+    <div class="cert-card"><img src="img/cert5.jpg"><p>Selección de Bombas Industriales - FI</p></div>
+    <div class="cert-card"><img src="img/cert6.jpg"><p>Estrés de Tuberías con AutoPipe - FI</p></div>
   </div>
 </section>
 
-  <!-- CONTACTO -->
 <section id="contacto">
   <h2>Contacto</h2>
   <ul>
