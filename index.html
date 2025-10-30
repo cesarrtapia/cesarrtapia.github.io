@@ -5,51 +5,215 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cesar R. Tapia Aguilar | Ingeniero Mecánico</title>
   <style>
-    body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f4f4f4; color: #333; }
-    header { background: #0b3d91; color: white; text-align: center; padding: 60px 20px; }
-    header h1 { margin: 0; font-size: 2.5em; }
-    header p { font-size: 1.2em; margin-top: 10px; }
-    nav { background: #062864; padding: 10px 0; text-align: center; }
-    nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; }
-    section { padding: 40px 20px; max-width: 1000px; margin: auto; }
-    h2 { border-bottom: 2px solid #0b3d91; padding-bottom: 5px; }
-    .carousel { display: flex; overflow: hidden; border-radius: 10px; margin-top: 20px; }
-    .carousel img { width: 100%; flex-shrink: 0; animation: slide 20s infinite; pointer-events: none; user-drag: none; }
-    @keyframes slide { 
+    /* ---------- Estilos base ---------- */
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: #f9fafb;
+      color: #1f2937;
+    }
+
+    header {
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+
+    header p {
+      font-size: 1.2em;
+      margin-top: 10px;
+    }
+
+    /* ---------- Menú fijo superior ---------- */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #1e40af;
+      padding: 10px 0;
+      text-align: center;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #93c5fd;
+    }
+
+    section {
+      background: #ffffff;
+      margin: 80px auto 40px auto;
+      padding: 40px 25px;
+      border-radius: 20px;
+      max-width: 1000px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    h2 {
+      border-bottom: 2px solid #3b82f6;
+      padding-bottom: 5px;
+      color: #1e3a8a;
+    }
+
+    ul {
+      line-height: 1.8;
+    }
+
+    footer {
+      background: #1e3a8a;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      border-top: 3px solid #60a5fa;
+    }
+
+    /* ---------- Carrusel ---------- */
+    .carousel {
+      display: flex;
+      overflow: hidden;
+      border-radius: 12px;
+      margin-top: 20px;
+    }
+
+    .carousel img {
+      width: 100%;
+      flex-shrink: 0;
+      animation: slide 20s infinite;
+      object-fit: cover;
+      pointer-events: none;
+      user-drag: none;
+    }
+
+    @keyframes slide {
       0%, 20% { transform: translateX(0); }
       25%, 45% { transform: translateX(-100%); }
       50%, 70% { transform: translateX(-200%); }
       75%, 95% { transform: translateX(-300%); }
       100% { transform: translateX(0); }
     }
-    footer { background: #062864; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+
+    /* ---------- Hover con descripción ---------- */
+    .image-container {
+      position: relative;
+      width: 100%;
+      max-width: 320px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .image-container img {
+      width: 100%;
+      transition: transform 0.4s ease;
+    }
+
+    .image-container:hover img {
+      transform: scale(1.05);
+    }
+
+    .image-overlay {
+      position: absolute;
+      bottom: 0;
+      background: rgba(59, 130, 246, 0.8);
+      color: white;
+      width: 100%;
+      text-align: center;
+      padding: 10px;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      font-size: 0.9em;
+    }
+
+    .image-container:hover .image-overlay {
+      opacity: 1;
+    }
+
+    /* ---------- Galería extra ---------- */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* ---------- Adaptación móvil ---------- */
+    @media (max-width: 768px) {
+      header {
+        padding: 40px 15px;
+      }
+
+      header h1 {
+        font-size: 1.8em;
+      }
+
+      section {
+        margin: 100px 20px 20px 20px;
+        padding: 25px;
+      }
+
+      nav a {
+        display: block;
+        margin: 10px 0;
+      }
+
+      .carousel img {
+        animation: none;
+        transform: none;
+      }
+
+      .gallery {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
   </style>
 </head>
+
 <body>
   <header>
     <h1>Cesar R. Tapia Aguilar</h1>
-    <p>Ingeniero Mecánico | Especialidad en Modelado 3D e Integridad Mecánica</p>
+    <p>Ingeniero Mecánico | Especialidad en Diseño 3D e Integridad Mecánica</p>
   </header>
 
   <nav>
     <a href="#sobre-mi">Sobre mí</a>
     <a href="#modelado3d">Modelado 3D</a>
-    <a href="#levantamiento">Levantamiento en campo</a>
-    <a href="#supervision">Supervisión en campo</a>
-    <a href="#aptitudes">Aptitudes</a>
+    <a href="#experienciaencampo">Experiencia en Campo</a>
     <a href="#certificaciones">Certificaciones</a>
     <a href="#contacto">Contacto</a>
   </nav>
 
   <section id="sobre-mi">
     <h2>Sobre mí</h2>
-    <p>Soy ingeniero mecánico con experiencia en modelado 3D, análisis estructural e integridad mecánica. 
-    He participado en proyectos de diseño y supervisión de sistemas de medición, estructuras metálicas y equipos industriales. 
-    Mi enfoque combina la precisión técnica del modelado con la verificación práctica en campo.</p>
+    <p>Ingeniero Mecánico con experiencia en la industria Oil & Gas y Manufactura.
+      He participado en el desarrollo de ingeniería conceptual, básica y de detalle e ingeniería AS-BUILT para instalaciones onshore 
+      como estaciones de regulación y medición de gas natural, refinerías y terminales de almacenamiento y reparto de combustibles.
+      Cumpliendo en todo momento con normativas nacionales e internacionales como ASME, API, NOM, AGA, ISO, NACE, etc.
+      
+      Además, cuento con experiencia en campo supervisando la construcción e integración de equipos estáticos y dinámicos,
+      asegurando el cumplimiento de especificaciones técnicas, estándares de calidad y normatividad vigente.</p>
   </section>
 
   <section id="modelado3d">
     <h2>Modelado 3D</h2>
+    <p>Parte de mi experiencia cómo ingeniero de diseño mecánico ha sido el desarrollo de diferentes modelos 3D, a partir de software como AutoCad,Plant 3D, SoidWorks, 
+      Autodesk Inventor, Fusion 360.
+      
+      Ademas he integrado nubes de puntos para garantizar la precisión del modelado en todo momento.</p>
     <div class="carousel">
       <img src="img/modelado1.jpg" alt="Modelado 1">
       <img src="img/modelado2.jpg" alt="Modelado 2">
@@ -58,28 +222,13 @@
     </div>
   </section>
 
-  <section id="levantamiento">
-    <h2>Levantamiento en campo</h2>
-    <p>Experiencia en levantamientos de instalaciones mecánicas, skids de medición y líneas de proceso. 
-    Trabajo con nubes de puntos, croquis de campo y verificación dimensional para asegurar precisión en los modelos 3D.</p>
+  <section id="experienciaencampo">
+    <h2>Experiencia en Campo</h2>
+    <p>Cuento con una solida experiencia en la supervisión técnica de fabricación y montaje de equipos, levantamiento en campo con escaner 3D 
+      
+    Experiencia en coordinación con contratistas y revisión de avances conforme a planos, especificaciones y documentación técnica.</p>
   </section>
 
-  <section id="supervision">
-    <h2>Supervisión en campo</h2>
-    <p>Supervisión técnica de montaje de equipos, inspección visual, verificación de soldaduras y alineación mecánica. 
-    Experiencia en coordinación con contratistas y revisión de avances conforme a planos y especificaciones.</p>
-  </section>
-
-  <section id="aptitudes">
-    <h2>Aptitudes</h2>
-    <ul>
-      <li>Modelado 3D (SolidWorks, AutoCAD, Plant 3D)</li>
-      <li>Lectura e interpretación de planos</li>
-      <li>Cálculo de integridad mecánica</li>
-      <li>Normas ASME y API</li>
-      <li>Trabajo de campo y coordinación de proyectos</li>
-    </ul>
-  </section>
 
   <section id="certificaciones">
     <h2>Certificaciones</h2>
@@ -90,8 +239,9 @@
     </ul>
   </section>
 
-   <section id="contacto">
-       <h2>Contacto</h2>
+
+  <section id="contacto">
+    <h2>Contacto</h2>
     <ul>
       <li>Correo: raytapia9908@gmail.com</li>
     </ul>
