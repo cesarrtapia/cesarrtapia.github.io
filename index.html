@@ -20,17 +20,9 @@
       padding: 60px 20px;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 2.5em;
-    }
+    header h1 { margin: 0; font-size: 2.5em; }
+    header p { font-size: 1.2em; margin-top: 10px; }
 
-    header p {
-      font-size: 1.2em;
-      margin-top: 10px;
-    }
-
-    /* ---------- Menú fijo superior ---------- */
     nav {
       position: sticky;
       top: 0;
@@ -49,9 +41,7 @@
       transition: color 0.3s;
     }
 
-    nav a:hover {
-      color: #93c5fd;
-    }
+    nav a:hover { color: #93c5fd; }
 
     section {
       background: #ffffff;
@@ -62,15 +52,8 @@
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     }
 
-    h2 {
-      border-bottom: 2px solid #3b82f6;
-      padding-bottom: 5px;
-      color: #1e3a8a;
-    }
-
-    ul {
-      line-height: 1.8;
-    }
+    h2 { border-bottom: 2px solid #3b82f6; padding-bottom: 5px; color: #1e3a8a; }
+    ul { line-height: 1.8; }
 
     footer {
       background: #1e3a8a;
@@ -81,50 +64,33 @@
       border-top: 3px solid #60a5fa;
     }
 
-    /* ---------- Carrusel ---------- */
-    .carousel {
-      display: flex;
+    /* ---------- Carruseles ---------- */
+    .carousel-container {
+      position: relative;
       overflow: hidden;
       border-radius: 12px;
       margin-top: 20px;
     }
 
-    .carousel img {
+    .carousel-track {
+      display: flex;
+      width: 400%;
+      animation: slide 16s infinite linear;
+    }
+
+    /* Pausa animación al hover */
+    .carousel-container:hover .carousel-track {
+      animation-play-state: paused;
+    }
+
+    .carousel-track img {
       width: 100%;
       flex-shrink: 0;
-      animation: slide 20s infinite;
       object-fit: cover;
-      pointer-events: none;
-      user-drag: none;
-    }
-
-    @keyframes slide {
-      0%, 20% { transform: translateX(0); }
-      25%, 45% { transform: translateX(-100%); }
-      50%, 70% { transform: translateX(-200%); }
-      75%, 95% { transform: translateX(-300%); }
-      100% { transform: translateX(0); }
-    }
-
-    /* ---------- Hover con descripción ---------- */
-    .image-container {
-      position: relative;
-      width: 100%;
-      max-width: 320px;
-      border-radius: 12px;
-      overflow: hidden;
-      margin: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    .image-container img {
-      width: 100%;
       transition: transform 0.4s ease;
     }
 
-    .image-container:hover img {
-      transform: scale(1.05);
-    }
+    .carousel-track img:hover { transform: scale(1.05); }
 
     .image-overlay {
       position: absolute;
@@ -139,46 +105,41 @@
       font-size: 0.9em;
     }
 
-    .image-container:hover .image-overlay {
-      opacity: 1;
+    .carousel-container:hover .image-overlay { opacity: 1; }
+
+    @keyframes slide {
+      0%, 20% { transform: translateX(0); }
+      25%, 45% { transform: translateX(-100%); }
+      50%, 70% { transform: translateX(-200%); }
+      75%, 95% { transform: translateX(-300%); }
+      100% { transform: translateX(0); }
     }
 
-    /* ---------- Galería extra ---------- */
+    /* ---------- Galería flexible ---------- */
     .gallery {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
     }
 
-    /* ---------- Adaptación móvil ---------- */
+    .image-container {
+      position: relative;
+      width: 100%;
+      max-width: 320px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .image-container img { width: 100%; display: block; }
+
     @media (max-width: 768px) {
-      header {
-        padding: 40px 15px;
-      }
-
-      header h1 {
-        font-size: 1.8em;
-      }
-
-      section {
-        margin: 100px 20px 20px 20px;
-        padding: 25px;
-      }
-
-      nav a {
-        display: block;
-        margin: 10px 0;
-      }
-
-      .carousel img {
-        animation: none;
-        transform: none;
-      }
-
-      .gallery {
-        flex-direction: column;
-        align-items: center;
-      }
+      header { padding: 40px 15px; }
+      header h1 { font-size: 1.8em; }
+      section { margin: 100px 20px 20px 20px; padding: 25px; }
+      nav a { display: block; margin: 10px 0; }
+      .carousel-track { animation: none; transform: none; }
     }
   </style>
 </head>
@@ -203,47 +164,102 @@
       He participado en el desarrollo de ingeniería conceptual, básica y de detalle e ingeniería AS-BUILT para instalaciones onshore 
       como estaciones de regulación y medición de gas natural, refinerías y terminales de almacenamiento y reparto de combustibles.
       Cumpliendo en todo momento con normativas nacionales e internacionales como ASME, API, NOM, AGA, ISO, NACE, etc.
-      
       Además, cuento con experiencia en campo supervisando la construcción e integración de equipos estáticos y dinámicos,
       asegurando el cumplimiento de especificaciones técnicas, estándares de calidad y normatividad vigente.</p>
   </section>
 
   <section id="modelado3d">
     <h2>Modelado 3D</h2>
-    <p>Parte de mi experiencia cómo ingeniero de diseño mecánico ha sido el desarrollo de diferentes modelos 3D, a partir de software como AutoCad,Plant 3D, SoidWorks, 
-      Autodesk Inventor, Fusion 360.
-      
-      Ademas he integrado nubes de puntos para garantizar la precisión del modelado en todo momento.</p>
-    <div class="carousel">
-      <img src="img/modelado1.jpg" alt="Modelado 1">
-      <img src="img/modelado2.jpg" alt="Modelado 2">
-      <img src="img/modelado3.jpg" alt="Modelado 3">
-      <img src="img/modelado4.jpg" alt="Modelado 4">
+    <p>Parte de mi experiencia como ingeniero de diseño mecánico ha sido el desarrollo de diferentes modelos 3D, a partir de software como AutoCad, Plant 3D, SolidWorks, 
+      Autodesk Inventor y Fusion 360. Además he integrado nubes de puntos para garantizar la precisión del modelado en todo momento.</p>
+
+    <div class="carousel-container">
+      <div class="carousel-track">
+        <div class="image-container">
+          <img src="img/modelado1.jpg" alt="Modelado 1">
+          <div class="image-overlay">Integración de nube de puntos para EPC en estación de gas natural</div>
+        </div>
+        <div class="image-container">
+          <img src="img/modelado2.jpg" alt="Modelado 2">
+          <div class="image-overlay">Simulación Estática para SKID estructural</div>
+        </div>
+        <div class="image-container">
+          <img src="img/modelado3.jpg" alt="Modelado 3">
+          <div class="image-overlay">Sistema de Regulación de Gas</div>
+        </div>
+        <div class="image-container">
+          <img src="img/modelado4.jpg" alt="Modelado 4">
+          <div class="image-overlay">Patín de Medición de Transferencia de Custodia</div>
+        </div>
+      </div>
     </div>
   </section>
 
   <section id="experienciaencampo">
     <h2>Experiencia en Campo</h2>
-    <p>Cuento con una solida experiencia en la supervisión técnica de fabricación y montaje de equipos, levantamiento en campo con escaner 3D 
-      
-    Experiencia en coordinación con contratistas y revisión de avances conforme a planos, especificaciones y documentación técnica.</p>
-  </section>
+    <p>Cuento con sólida experiencia en la supervisión técnica de fabricación y montaje de equipos, levantamiento en campo con escáner 3D, 
+       coordinación con contratistas y revisión de avances conforme a planos, especificaciones y documentación técnica.</p>
 
+    <div class="carousel-container">
+      <div class="carousel-track">
+        <div class="image-container">
+          <img src="img/campo1.jpg" alt="Campo 1">
+          <div class="image-overlay"><!-- Descripción aquí -->Supervisión de montaje de SKID estructural</div>
+        </div>
+        <div class="image-container">
+          <img src="img/campo2.jpg" alt="Campo 2">
+          <div class="image-overlay"><!-- Descripción aquí -->Integración de equipos en estación de gas</div>
+        </div>
+        <div class="image-container">
+          <img src="img/campo3.jpg" alt="Campo 3">
+          <div class="image-overlay"><!-- Descripción aquí -->Levantamiento con escáner 3D</div>
+        </div>
+        <div class="image-container">
+          <img src="img/campo4.jpg" alt="Campo 4">
+          <div class="image-overlay"><!-- Descripción aquí -->Coordinación con contratistas y revisión de planos</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section id="certificaciones">
     <h2>Certificaciones</h2>
-    <ul>
-      <li>CSWA – SolidWorks</li>
-      <li>API 570 – Integridad Mecánica</li>
-      <li>Diplomado en Izaje y Maniobras</li>
-    </ul>
+    <p>Algunos de mis certificados obtenidos:</p>
+    <div class="carousel-container">
+      <div class="carousel-track">
+        <div class="image-container">
+          <img src="img/cert1.jpg" alt="Certificado 1">
+          <div class="image-overlay"><!-- Descripción aquí -->CSWA – SolidWorks</div>
+        </div>
+        <div class="image-container">
+          <img src="img/cert2.jpg" alt="Certificado 2">
+          <div class="image-overlay"><!-- Descripción aquí -->API 570 – Integridad Mecánica</div>
+        </div>
+        <div class="image-container">
+          <img src="img/cert3.jpg" alt="Certificado 3">
+          <div class="image-overlay"><!-- Descripción aquí -->Diplomado en Izaje y Maniobras</div>
+        </div>
+        <div class="image-container">
+          <img src="img/cert4.jpg" alt="Certificado 4">
+          <div class="image-overlay"><!-- Descripción aquí -->Certificado Adicional 4</div>
+        </div>
+        <div class="image-container">
+          <img src="img/cert5.jpg" alt="Certificado 5">
+          <div class="image-overlay"><!-- Descripción aquí -->Certificado Adicional 5</div>
+        </div>
+        <div class="image-container">
+          <img src="img/cert6.jpg" alt="Certificado 6">
+          <div class="image-overlay"><!-- Descripción aquí -->Certificado Adicional 6</div>
+        </div>
+      </div>
+    </div>
   </section>
-
 
   <section id="contacto">
     <h2>Contacto</h2>
     <ul>
-      <li>Correo: raytapia9908@gmail.com</li>
+      <li>Correo: <a href="mailto:raytapia9908@gmail.com">raytapia9908@gmail.com</a></li>
+      <li>LinkedIn: <a href="https://www.linkedin.com/in/césar-tapia-aguilar-9101b41b1" target="_blank">César Tapia Aguilar</a></li>
     </ul>
   </section>
 
