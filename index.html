@@ -4,128 +4,166 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cesar R. Tapia Aguilar | Ingeniero Mecánico</title>
-  
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      background-color: #f9fafb;
-      color: #1f2937;
-    }
 
-    header {
-      background: linear-gradient(135deg, #3b82f6, #2563eb);
-      color: white;
-      text-align: center;
-      padding: 60px 20px;
-    }
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: #f9fafb;
+    color: #1f2937;
+  }
 
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: #1e40af;
-      padding: 10px 0;
-      text-align: center;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-    }
+  header {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+  }
 
-    nav a {
-      color: white;
-      margin: 0 15px;
-      font-weight: bold;
-      text-decoration: none;
-    }
+  header h1 { margin: 0; font-size: 2.5em; }
+  header p { font-size: 1.2em; margin-top: 10px; }
 
-    section {
-      background: #ffffff;
-      margin: 80px auto 40px auto;
-      padding: 40px 25px;
-      border-radius: 20px;
-      max-width: 1000px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-    }
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: #1e40af;
+    padding: 10px 0;
+    text-align: center;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  }
 
-    h2 {
-      border-bottom: 2px solid #3b82f6;
-      padding-bottom: 5px;
-      color: #1e3a8a;
-    }
+  nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+  nav a:hover { color: #93c5fd; }
 
-    footer {
-      background: #1e3a8a;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-      border-top: 3px solid #60a5fa;
-    }
+  section {
+    background: #ffffff;
+    margin: 80px auto 40px auto;
+    padding: 40px 25px;
+    border-radius: 20px;
+    max-width: 1000px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  }
 
-    /* CARRUSEL NUEVO CONTROLADO */
-    .carousel-container {
-      position: relative;
-      overflow: hidden;
-      border-radius: 12px;
-      margin-top: 20px;
-    }
+  h2 { border-bottom: 2px solid #3b82f6; padding-bottom: 5px; color: #1e3a8a; }
+  ul { line-height: 1.8; }
 
-    .carousel-track {
-      display: flex;
-      transition: transform 0.6s ease-in-out;
-    }
+  footer {
+    background: #1e3a8a;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    border-top: 3px solid #60a5fa;
+  }
 
-    .image-container {
-      position: relative;
-      min-width: 100%;
-      height: 320px;
-    }
+  /* ---------- CAROUSEL ---------- */
+  .carousel-container {
+    overflow: hidden;
+    position: relative;
+    border-radius: 12px;
+    margin-top: 20px;
+  }
 
-    .image-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      user-select: none;
-      pointer-events: none;
-    }
+  .carousel-track {
+    display: flex;
+    animation: slide 14s infinite ease-in-out;
+    width: max-content;
+  }
 
-    .image-overlay {
-      position: absolute;
-      bottom: 0;
-      background: rgba(59, 130, 246, 0.85);
-      color: white;
-      width: 100%;
-      padding: 10px;
-      opacity: 0;
-      text-align: center;
-      transition: opacity 0.4s;
-      font-size: 0.9em;
-    }
+  .carousel-container:hover .carousel-track {
+    animation-play-state: paused;
+  }
 
-    .image-container:hover .image-overlay {
-      opacity: 1;
-    }
+  .image-container {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+  }
 
-    .carousel-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0,0,0,0.4);
-      color: white;
-      border: none;
-      padding: 12px;
-      cursor: pointer;
-      font-size: 20px;
-      border-radius: 50%;
-    }
+  .image-container img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+  }
 
-    .prev { left: 10px; }
-    .next { right: 10px; }
+  .image-overlay {
+    position: absolute;
+    bottom: 0;
+    background: rgba(59, 130, 246, 0.8);
+    color: white;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
 
-    @media(max-width: 768px) {
-      section { margin: 100px 10px 20px 10px; padding: 25px; }
-      nav a { display: block; margin: 8px 0; }
-    }
-  </style>
+  .image-container:hover .image-overlay {
+    opacity: 1;
+  }
+
+  @keyframes slide {
+    0%, 20% { transform: translateX(0); }
+    25%, 45% { transform: translateX(-100%); }
+    50%, 70% { transform: translateX(-200%); }
+    75%, 95% { transform: translateX(-300%); }
+    100% { transform: translateX(0); }
+  }
+
+  /* ---------- CERTIFICADOS ---------- */
+  .cert-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .cert-card {
+    width: 350px;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    padding-bottom: 10px;
+  }
+
+  .cert-card img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    pointer-events: none;
+  }
+
+  @media (max-width: 768px) {
+    header { padding: 40px 15px; }
+    header h1 { font-size: 1.8em; }
+    section { margin: 100px 20px 20px 20px; padding: 25px; }
+    nav a { display: block; margin: 10px 0; }
+
+    .carousel-track { animation: none; }
+    .carousel-container { overflow-x: scroll; scroll-snap-type: x mandatory; }
+    .image-container { scroll-snap-align: center; }
+  }
+
+  /* Block saving images */
+  img { -webkit-user-drag: none; user-select: none; }
+  body { -webkit-touch-callout: none; }
+</style>
+
+<script>
+// Block right click
+document.addEventListener('contextmenu', e => e.preventDefault());
+</script>
 </head>
 
 <body>
@@ -159,131 +197,56 @@
     <p>Parte de mi experiencia como ingeniero de diseño mecánico ha sido el desarrollo de diferentes modelos 3D, a partir de software como AutoCad, Plant 3D, SolidWorks, 
       Autodesk Inventor y Fusion 360. Además he integrado nubes de puntos para garantizar la precisión del modelado en todo momento</p>
 
-    <div class="carousel-container" data-carousel>
-      <button class="carousel-btn prev" data-prev>‹</button>
-      <button class="carousel-btn next" data-next>›</button>
-
-      <div class="carousel-track">
-        <div class="image-container">
-          <img src="img/modelado1.jpg">
-          <div class="image-overlay">Integración de nube de puntos para modelado 3D</div>
-        </div>
-        <div class="image-container">
-          <img src="img/modelado2.jpg">
-          <div class="image-overlay">Simulación estática para izaje de SKID</div>
-        </div>
-        <div class="image-container">
-          <img src="img/modelado3.jpg">
-          <div class="image-overlay">Sistema de regulación de gas</div>
-        </div>
-        <div class="image-container">
-          <img src="img/modelado4.jpg">
-          <div class="image-overlay">Patín de medición por transferencia de custodia</div>
-        </div>
-      </div>
+       <div class="carousel-container">
+    <div class="carousel-track">
+      <div class="image-container"><img src="img/modelado1.jpg"><div class="image-overlay">Integración de nube de puntos para modelado 3Ds</div></div>
+      <div class="image-container"><img src="img/modelado2.jpg"><div class="image-overlay">Simulación estática para izaje de SKID</div></div>
+      <div class="image-container"><img src="img/modelado3.jpg"><div class="image-overlay">Sistema de regulación de Gas Natural</div></div>
+      <div class="image-container"><img src="img/modelado4.jpg"><div class="image-overlay">Patín de medición por transferencia de custodia</div></div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- CAMPO -->
-  <section id="experienciaencampo">
-    <h2>Experiencia en Campo</h2>
-    <p>Cuento con sólida experiencia en supervisión técnica...</p>
+ <section id="experienciaencampo">
+  <h2>Experiencia en Campo</h2>
+  <p>Supervisión técnica...</p>
 
-    <div class="carousel-container" data-carousel>
-      <button class="carousel-btn prev" data-prev>‹</button>
-      <button class="carousel-btn next" data-next>›</button>
-
-      <div class="carousel-track">
-        <div class="image-container">
-          <img src="img/campo1.jpg">
-          <div class="image-overlay">Supervisión de montaje SKID</div>
-        </div>
-        <div class="image-container">
-          <img src="img/campo2.jpg">
-          <div class="image-overlay">Integración equipos gas</div>
-        </div>
-        <div class="image-container">
-          <img src="img/campo3.jpg">
-          <div class="image-overlay">Escaneo 3D en campo</div>
-        </div>
-        <div class="image-container">
-          <img src="img/campo4.jpg">
-          <div class="image-overlay">Coordinación y planos</div>
-        </div>
-      </div>
+  <div class="carousel-container">
+    <div class="carousel-track">
+      <div class="image-container"><img src="img/campo1.jpg"><div class="image-overlay">Supervisión montaje SKID</div></div>
+      <div class="image-container"><img src="img/campo2.jpg"><div class="image-overlay">Integración estaciones gas</div></div>
+      <div class="image-container"><img src="img/campo3.jpg"><div class="image-overlay">Escaneo 3D</div></div>
+      <div class="image-container"><img src="img/campo4.jpg"><div class="image-overlay">Coordinación planos</div></div>
     </div>
-  </section>
-
+  </div>
+</section>
   <!-- CERTIFICACIONES -->
   <section id="certificaciones">
-    <h2>Certificaciones</h2>
-    <p>Algunos de mis certificados obtenidos:</p>
+  <h2>Certificaciones</h2>
 
-    <div class="carousel-container" data-carousel>
-      <button class="carousel-btn prev" data-prev>‹</button>
-      <button class="carousel-btn next" data-next>›</button>
-
-      <div class="carousel-track">
-        <div class="image-container"><img src="img/cert1.jpg"><div class="image-overlay">Lectura de planos y DTI de tuberías - DMIA</div></div>
-        <div class="image-container"><img src="img/cert2.jpg"><div class="image-overlay">Manejo de escaner RTC-360 - LEICA GEOSYSTEMS</div></div>
-        <div class="image-container"><img src="img/cert3.jpg"><div class="image-overlay">CSWA - SolidWorks</div></div>
-        <div class="image-container"><img src="img/cert4.jpg"><div class="image-overlay">Proyectista de Sistemas Piping Industriales - FI</div></div>
-        <div class="image-container"><img src="img/cert5.jpg"><div class="image-overlay">Selección de Bombas Industriales -FI</div></div>
-        <div class="image-container"><img src="img/cert6.jpg"><div class="image-overlay">Estres de Tuberías con AutoPipe - FI</div></div>
-      </div>
-    </div>
-  </section>
+  <div class="cert-gallery">
+    <div class="cert-card"><img src="img/cert1.jpg"><p>Lectura de planos y DTI de tuberías - DMIA</p></div>
+    <div class="cert-card"><img src="img/cert2.jpg"><p>Manejo de escaner RTC-360 - LEICA GEOSYSTEMS</p></div>
+    <div class="cert-card"><img src="img/cert3.jpg"><p>CSWA - SolidWorks</p></div>
+    <div class="cert-card"><img src="img/cert4.jpg"><p>Proyectista de Sistemas Piping Industriales - FI</p></div>
+    <div class="cert-card"><img src="img/cert5.jpg"><p>Selección de Bombas Industriales -FI</p></div>
+    <div class="cert-card"><img src="img/cert6.jpg"><p>Estres de Tuberías con AutoPipe - FI</p></div>
+  </div>
+</section>
 
   <!-- CONTACTO -->
-  <section id="contacto">
-    <h2>Contacto</h2>
-    <ul>
-      <li>Correo: <a href="mailto:raytapia9908@gmail.com">raytapia9908@gmail.com</a></li>
-      <li>LinkedIn: <a href="https://www.linkedin.com/in/césar-tapia-aguilar-9101b41b1" target="_blank">César Tapia Aguilar</a></li>
-    </ul>
-  </section>
+<section id="contacto">
+  <h2>Contacto</h2>
+  <ul>
+    <li>Correo: <a href="mailto:raytapia9908@gmail.com">raytapia9908@gmail.com</a></li>
+    <li>LinkedIn: <a href="https://www.linkedin.com/in/césar-tapia-aguilar-9101b41b1" target="_blank">César Tapia Aguilar</a></li>
+  </ul>
+</section>
 
-  <footer>
-    © 2025 Cesar R. Tapia Aguilar
-  </footer>
-
-<script>
-  // Bloquear clic derecho imágenes
-  document.addEventListener("contextmenu", e => {
-    if (e.target.tagName === "IMG") e.preventDefault();
-  });
-
-  // Carrusel funcional
-  document.querySelectorAll("[data-carousel]").forEach(carousel => {
-    const track = carousel.querySelector(".carousel-track");
-    const slides = Array.from(track.children);
-    let index = 0;
-
-    const update = () => {
-      track.style.transform = `translateX(-${index * 100}%)`;
-    };
-
-    carousel.querySelector("[data-next]").onclick = () => {
-      index = (index + 1) % slides.length;
-      update();
-    };
-
-    carousel.querySelector("[data-prev]").onclick = () => {
-      index = (index - 1 + slides.length) % slides.length;
-      update();
-    };
-
-    // Swipe móvil
-    let startX = 0;
-    track.addEventListener("touchstart", e => startX = e.touches[0].clientX);
-    track.addEventListener("touchend", e => {
-      const endX = e.changedTouches[0].clientX;
-      if (startX - endX > 50) index = (index + 1) % slides.length;
-      if (endX - startX > 50) index = (index - 1 + slides.length) % slides.length;
-      update();
-    });
-  });
-</script>
+<footer>
+  © 2025 Cesar R. Tapia Aguilar | Portafolio profesional
+</footer>
 
 </body>
 </html>
